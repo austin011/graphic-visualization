@@ -1,7 +1,6 @@
 import { subscribe } from "./helpers/canvas-subscription";
 import { Vector } from "./types/vector";
 
-//TODO - MAKE THE DELTA POSITION SO THAT THE CLASSES THAT USE THIS CAN USE IT BASED ON THE VECTOR OF WHERE THE MOUSE IS GOING
 class MouseMove {
   position: Vector;
 

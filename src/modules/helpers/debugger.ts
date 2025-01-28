@@ -1,20 +1,40 @@
-const messages: string[] = [];
+import { Config } from "../config";
 
-function debug(message: string) {
-  messages.push(message);
+let messages: Record<string, string[]> = {};
+
+function debug(message: any, group: string = "") {
+  if (Config.Debugger) {
+    if (!messages[group]) {
+      messages[group] = [];
+    }
+
+    messages[group].push(message);
+  }
 }
 
 setInterval(() => {
-  if (messages.length !== 0) {
+  if (Object.keys(messages).length !== 0) {
     console.group("Debugger");
 
-    messages.forEach((message) => {
-      console.log(message);
+    Object.keys(messages).forEach((group) => {
+      if (group === "") {
+        messages[group].forEach((message) => {
+          console.log(message);
+        });
+      } else {
+        console.groupCollapsed(group);
+
+        messages[group].forEach((message) => {
+          console.log(message);
+        });
+
+        console.groupEnd();
+      }
     });
 
     console.groupEnd();
 
-    messages.length = 0;
+    messages = {};
   }
 }, 1000);
 

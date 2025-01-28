@@ -35,17 +35,17 @@ export default class Camera implements ICamera {
      *
      * How many pixels to move the camera by a single degree of rotation **
      *
-     * x = ((1920 / 2) / 720) / virtualMouseSensitivity
-     * y = ((1080 / 2) / 720) / virtualMouseSensitivity
+     * x = (1920 / 720) / sens
+     * y = (1080 / 720) / sens
      *
      */
-    const xDegreesPerPixel = 1920 / 2 / 720 / virtualMouseSensitivity;
-    const yDegreesPerPixel = 1080 / 2 / 720 / virtualMouseSensitivity;
+    const xDegreesPerPixel = 1920 / 720 / virtualMouseSensitivity;
+    const yDegreesPerPixel = 1080 / 720 / virtualMouseSensitivity;
 
-    const { x: xPosition, y: yPosition } = this.mousePosition.position;
+    const { x: xPixels, y: yPixels } = this.mousePosition.position;
 
-    const xDegrees = xPosition * xDegreesPerPixel;
-    const yDegrees = yPosition * yDegreesPerPixel;
+    const xDegrees = xPixels * xDegreesPerPixel;
+    const yDegrees = yPixels * yDegreesPerPixel;
 
     const transformation = getRadians({ xDegrees, yDegrees });
 
@@ -54,6 +54,8 @@ export default class Camera implements ICamera {
       xRadians: transformation.xRadians,
       yRadians: transformation.yRadians,
     });
+
+    debug(transformation, "Camera Rotation");
   }
 
   private eventListeners() {

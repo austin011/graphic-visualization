@@ -24,7 +24,7 @@ function windowFocus() {
   window.canvas.focus();
 }
 
-export default class App {
+class App {
   constructor() {
     this.initialize();
     this.eventListeners();
@@ -65,3 +65,5 @@ export default class App {
     window.requestAnimationFrame(this.start.bind(this));
   }
 }
+
+export { App };
