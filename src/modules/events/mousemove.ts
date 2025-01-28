@@ -1,7 +1,7 @@
-import { subscribe } from "./helpers/canvas-subscription";
-import { Vector } from "./types/vector";
+import { subscribe } from "../utils/canvas-subscription";
+import { Vector } from "../types/vector";
 
-class MouseMove {
+class MousemoveEvent {
   position: Vector;
 
   constructor() {
@@ -26,4 +26,4 @@ class MouseMove {
   }
 }
 
-export { MouseMove };
+export { MousemoveEvent };

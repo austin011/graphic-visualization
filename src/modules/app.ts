@@ -1,6 +1,6 @@
 import Bin from "./bin";
-import { _emit } from "./helpers/canvas-subscription";
-import { debug } from "./helpers/debugger";
+import { _emit } from "./utils/canvas-subscription";
+import { debug } from "./utils/debugger";
 
 //TODO Delete
 

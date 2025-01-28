@@ -1,9 +1,9 @@
 import Bin from "./bin";
 import { Config } from "./config";
-import { debug } from "./helpers/debugger";
-import { getRadians } from "./helpers/get-radians";
+import { debug } from "./utils/debugger";
+import { getRadians } from "./utils/get-radians";
 import ICamera from "./interfaces/icamera";
-import { MouseMove } from "./mouse-move";
+import { MousemoveEvent } from "./events/mousemove";
 import { Rotation } from "./types/rotation";
 import { Vector3d } from "./types/vector";
 
@@ -11,13 +11,13 @@ export default class Camera implements ICamera {
   position: Vector3d;
   axis: Rotation;
   inFocus = false;
-  mousePosition: MouseMove;
+  mousemoveEvent: MousemoveEvent;
 
   constructor() {
     this.position = new Vector3d(0, 5, 5);
     this.axis = new Rotation(0, 0, 0);
 
-    this.mousePosition = new MouseMove();
+    this.mousemoveEvent = new MousemoveEvent();
 
     this.eventListeners();
 
@@ -42,7 +42,7 @@ export default class Camera implements ICamera {
     const xDegreesPerPixel = 1920 / 720 / virtualMouseSensitivity;
     const yDegreesPerPixel = 1080 / 720 / virtualMouseSensitivity;
 
-    const { x: xPixels, y: yPixels } = this.mousePosition.position;
+    const { x: xPixels, y: yPixels } = this.mousemoveEvent.position;
 
     const xDegrees = xPixels * xDegreesPerPixel;
     const yDegrees = yPixels * yDegreesPerPixel;
