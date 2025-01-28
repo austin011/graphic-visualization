@@ -49,13 +49,10 @@ export default class Camera implements ICamera {
 
     const transformation = getRadians({ xDegrees, yDegrees });
 
-    const xRadians = (xDegrees * Math.PI) / 180;
-    const yRadians = (yDegrees * Math.PI) / 180;
-
     //Transform the axis by x and y radians
     this.axis.transform({
-      xRadians: xRadians,
-      yRadians: yRadians,
+      xRadians: transformation.xRadians,
+      yRadians: transformation.yRadians,
     });
   }
 
